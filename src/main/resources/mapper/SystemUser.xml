@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.server.dao.SystemUserDao">
+	<resultMap id="SystemUserMap" type="SystemUser">
+		<result property="databaseId" column="database_id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+		<result property="createTime" column="create_time" />
+		<result property="lastLoginTime" column="last_login_time" />
+		<result property="roleType" column="role_type" />
+		<result property="phone" column="phone" />
+		<result property="wx" column="wx" />
+		<result property="zfb" column="zfb" />
+		<result property="fatherUserId" column="father_user_id" />
+		<result property="fatherName" column="father_name" />
+	</resultMap>
+	<!-- 字段名称 -->
+	<sql id="columns">
+		database_id,user_name,password,create_time,last_login_time,role_type,phone,wx,zfb,father_user_id,father_name
+	</sql>
+	<!-- 根据用户名查询 -->
+	<select id="searchUserByName" resultMap="SystemUserMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="columns"></include>
+		from system_user where user_name = #{userName} limit 1
+	</select>
+	<!-- 根据手机号查询 -->
+	<select id="searchUserByPhone" resultMap="SystemUserMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="columns"></include>
+		from system_user where phone = #{phone} limit 1
+	</select>
+</mapper>

@@ -1,4 +1,4 @@
-package com.yj.server.redis;
+package com.yj.server.constants;
 
 /**
  * 
@@ -13,5 +13,10 @@ public interface RedisKeyConstants {
 	 * 验证码的key
 	 */
 	public static final String KEY_NAME_VRCODE = "SYSTEM_VRCODE_";
+
+	/**
+	 * TOKEN的key
+	 */
+	public static final String KEY_NAME_TOKEN = "SYSTEM_TOKEN";
 
 }

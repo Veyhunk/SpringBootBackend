@@ -16,7 +16,7 @@ import org.springframework.jms.config.JmsListenerContainerFactory;
 /**
  * 启动类
  * 
- * 功能描述： 创建人：Administrator 22
+ * 功能描述： 创建人：Administrator 
  * 
  * @version
  *

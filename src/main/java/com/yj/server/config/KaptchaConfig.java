@@ -1,4 +1,4 @@
-package com.yj.server.kaptcha;
+package com.yj.server.config;
 
 import java.util.Properties;
 

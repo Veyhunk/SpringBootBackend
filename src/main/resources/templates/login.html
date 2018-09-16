@@ -41,7 +41,7 @@
 							<label
 								class="layadmin-user-login-icon layui-icon layui-icon-vercode"
 								for="LAY-user-login-vercode"></label> <input type="text"
-								name="vercode" id="LAY-user-login-vercode" lay-verify="required"
+								name="vrcode" id="LAY-user-login-vercode" lay-verify="required"
 								placeholder="图形验证码" class="layui-input">
 						</div>
 						<div class="layui-col-xs5">
@@ -83,30 +83,30 @@
 			form.render();
 			//验证码
 			var changePic = function() {
-				$("#vrcodeImg").attr("src", "vrcode?t=" + new Date().getTime() + "$=&id=" + $("#vrid").val());
+				$("#vrcodeImg").attr("src", "vrcode?t=" + new Date().getTime() + "&id=" + $("#vrid").val());
 			}
 			$("#vrcodeImg").click(changePic)
 			changePic();
 			//提交
 			form.on('submit(LAY-user-login-submit)', function(obj) {
 				//请求登入接口
-				admin.req({
-					url : layui.setter.base + 'json/user/login.js', //实际使用请改成服务端真实接口
-					data : obj.field,
-					done : function(res) {
-						//请求成功后，写入 access_token
-						layui.data(setter.tableName, {
-							key : setter.request.tokenName,
-							value : res.data.access_token
-						});
-						//登入成功的提示与跳转
-						layer.msg('登入成功', {
-							offset : '15px',
-							icon : 1,
-							time : 1000
-						}, function() {
-							location.href = '../'; //后台主页
-						});
+				$.ajax({
+					type : 'post',
+					url : '/system/webLogin',
+					data : {
+						username : $("#LAY-user-login-username").val(),
+						password : $("#LAY-user-login-password").val(),
+						id : $("#vrid").val(),
+						vrcode : $("#LAY-user-login-vercode").val()
+					},
+					success : function() {
+						location.href = '/admin/index.html';
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						var msg = xhr.responseText;
+						var response = JSON.parse(msg);
+						layer.alert(response.message);
+						$("#vrcodeImg").click();
 					}
 				});
 			});
