@@ -67,7 +67,7 @@ public class VrcodeServiceImpl implements VrcodeService {
 			return false;
 		}
 		String redisCode = redisClient.get(RedisKeyConstants.KEY_NAME_VRCODE + id);
-		return null != redisCode && code.equals(redisCode);
+		return null != redisCode && code.equalsIgnoreCase(redisCode);
 	}
 
 }
