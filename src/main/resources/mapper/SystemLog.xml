@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.server.dao.SystemLogDao">
+	<resultMap id="SystemLogMap" type="SystemLog">
+		<result property="databaseId" column="database_id" />
+		<result property="userName" column="user_name" />
+		<result property="module" column="module" />
+		<result property="remark" column="remark" />
+		<result property="ip" column="ip" />
+		<result property="param" column="param" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+	<!-- 字段名称 -->
+	<sql id="columns">
+		database_id,user_name,module,remark,ip,param,create_time
+	</sql>
+	<!-- 新增日志 -->
+	<insert id="addLog" parameterType="SystemLog">
+		insert into
+		system_log(user_name,module,remark,ip,param,create_time)
+		values(#{userName},#{module},#{remark},#{ip},#{param},#{createTime})
+	</insert>
+
+
+</mapper>

@@ -39,8 +39,7 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setSuccessUrl("admin/index.html");
 		LogoutFilter logoutFilter = new LogoutFilter();
 		logoutFilter.setRedirectUrl("/");
-		BackendLoginFilter restfulFilter = new BackendLoginFilter();
-		shiroFilterFactoryBean.getFilters().put("authc", restfulFilter);
+		shiroFilterFactoryBean.getFilters().put("authc", new BackendLoginFilter());
 		shiroFilterFactoryBean.getFilters().put("logout", logoutFilter);
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;

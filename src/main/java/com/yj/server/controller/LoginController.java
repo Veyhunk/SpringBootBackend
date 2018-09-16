@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yj.server.annotation.LogAnnotation;
 import com.yj.server.dto.ResponseInfo;
 import com.yj.server.dto.Token;
 import com.yj.server.exception.VrcodeErrorException;
@@ -39,6 +40,7 @@ public class LoginController {
 	 * @param password
 	 * @return
 	 */
+	@LogAnnotation(module = "登录")
 	@PostMapping("restLogin")
 	public Token restfulLogin(String username, String password) {
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
@@ -52,6 +54,7 @@ public class LoginController {
 	 * @param username
 	 * @param password
 	 */
+	@LogAnnotation(module = "登录")
 	@PostMapping("webLogin")
 	public ResponseInfo login(String username, String password, String vrcode, String id) {
 		if (null == id || null == vrcode || !vrcodeService.checkVrcode(id, vrcode)) {

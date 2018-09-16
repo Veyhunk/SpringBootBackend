@@ -28,14 +28,20 @@ public class RedisTokenServiceImpl implements TokenService {
 	@Autowired
 	private RedisClient redisClient;
 
+	/**
+	 * 将token保存到redis
+	 */
 	@Override
 	public Token saveToken(UsernamePasswordToken token) {
-		String key = UUIDUtil.createUUID();
-		redisClient.set(RedisKeyConstants.KEY_NAME_TOKEN + key, JSONObject.toJSONString(token));
-		redisClient.expire(RedisKeyConstants.KEY_NAME_TOKEN + key, 120);
+		String key = RedisKeyConstants.KEY_NAME_TOKEN + UUIDUtil.createUUID();
+		redisClient.set(key, JSONObject.toJSONString(token));
+		redisClient.expire(key, 120);
 		return new Token(key, DateUtils.addSeconds(new Date(), 120));
 	}
 
+	/**
+	 * 获取redis里面存的用户信息
+	 */
 	@Override
 	public UsernamePasswordToken getToken(String key) {
 		String json = redisClient.get(RedisKeyConstants.KEY_NAME_TOKEN + key);
@@ -46,6 +52,9 @@ public class RedisTokenServiceImpl implements TokenService {
 		return null;
 	}
 
+	/**
+	 * 删除登录的用户信息
+	 */
 	@Override
 	public boolean deleteToken(String key) {
 		return redisClient.delete(key);
