@@ -1,4 +1,4 @@
-package com.yj.server.redis;
+package com.yj.server.cache;
 
 import java.util.concurrent.TimeUnit;
 

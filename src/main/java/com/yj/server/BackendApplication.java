@@ -14,12 +14,9 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 
 /**
- * 启动类
- * 
- * 功能描述： 创建人：Administrator 
- * 
- * @version
- *
+ * @Description: 启动类
+ * @author zhhy19891013
+ * @date 2018年9月17日 下午5:30:50
  */
 @SpringBootApplication
 @MapperScan("com.yj.server.dao")

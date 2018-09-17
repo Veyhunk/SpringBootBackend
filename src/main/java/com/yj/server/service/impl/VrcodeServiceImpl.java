@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.yj.server.cache.RedisClient;
 import com.yj.server.constants.RedisKeyConstants;
-import com.yj.server.redis.RedisClient;
 import com.yj.server.service.VrcodeService;
 
 /**

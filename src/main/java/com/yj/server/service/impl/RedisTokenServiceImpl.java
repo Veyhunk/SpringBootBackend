@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yj.server.cache.RedisClient;
 import com.yj.server.constants.RedisKeyConstants;
 import com.yj.server.dto.Token;
-import com.yj.server.redis.RedisClient;
 import com.yj.server.service.TokenService;
 import com.yj.server.util.UUIDUtil;
 
