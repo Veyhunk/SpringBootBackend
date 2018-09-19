@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * @Description: 启动类
@@ -22,6 +23,7 @@ import org.springframework.jms.config.JmsListenerContainerFactory;
 @MapperScan("com.yj.server.dao")
 @EnableJms // 启动jms服务器（本项目中用于activemq）
 @ServletComponentScan // 配套filter使用
+@EnableAsync
 public class BackendApplication {
 
 	public static void main(String[] args) {

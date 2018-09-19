@@ -18,9 +18,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yj.server.annotation.LogAnnotation;
-import com.yj.server.dao.SystemLogDao;
 import com.yj.server.model.SystemLog;
 import com.yj.server.model.SystemUser;
+import com.yj.server.service.SystemLogService;
 import com.yj.server.util.UserUtil;
 import com.yj.server.util.WebUtil;
 
@@ -36,7 +36,7 @@ import com.yj.server.util.WebUtil;
 @Component
 public class LogAspect {
 	@Autowired
-	private SystemLogDao systemLogDao;
+	private SystemLogService systemLogService;
 
 	/**
 	 * 自定义注解处进行日志操作
@@ -65,7 +65,7 @@ public class LogAspect {
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
 				.getRequest();
 		log.setIp(WebUtil.getIpAddress(request));
-		systemLogDao.addLog(log);
+		systemLogService.saveLog(log);
 		// 让controller方法继续，返回的对象为controller带有LogAnnotation注解的方法返回的
 		return joinPoint.proceed();
 	}

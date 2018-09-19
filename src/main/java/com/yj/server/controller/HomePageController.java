@@ -42,9 +42,20 @@ public class HomePageController {
 	 * @return
 	 */
 	@RequestMapping("/")
+	public String index(ModelMap map) {
+		return "index";
+	}
+
+	/**
+	 * 管理员登录页面
+	 * 
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("back/login")
 	public String login(ModelMap map) {
 		map.put("id", UUIDUtil.createUUID());
-		return "login";
+		return "admin_back/login";
 	}
 
 }
